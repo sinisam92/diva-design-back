@@ -14,16 +14,14 @@ class BlogsController extends Controller
         $query->with(['user']);
 
         return response()->json([
-            'blogs' =>  $query->latest()->paginate(6)
+            'blogs' =>  $query->latest()->paginate(3)
         ]);
-       
-
     }
     public function show($id)
     {
         return Blog::with(['user'])->find($id);
     }
-    public function store(BlogRequest $request) 
+    public function store(BlogRequest $request)
     {
         // $user = auth();
         // dd(auth()->user());
