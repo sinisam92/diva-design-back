@@ -34,4 +34,12 @@ class BlogsController extends Controller
 
         return $this->show($blog->id);
     }
+    public function destroy($id)
+    {
+        $blog = Blog::find($id);
+        $blog->delete();
+        return response()->json([
+            'message' => 'Deleted'
+        ]);
+    }
 }

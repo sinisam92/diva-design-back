@@ -17,6 +17,7 @@ class CreateShopsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description');
+            $table->string('currency');
             $table->integer('price');
             $table->string('image_url');
             $table->string('type');

@@ -11,6 +11,7 @@ class Shop extends Model
         'description',
         'image_url',
         'price',
+        'currency',
         'type',
         'user_id'
     ];

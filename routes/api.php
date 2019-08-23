@@ -12,25 +12,28 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::group([
-    'prefix' => 'blogs'
-], function() {
+	'prefix' => 'blogs'
+], function () {
 	Route::post('/', 'BlogsController@store');
-    Route::get('/', 'BlogsController@index');
-    Route::get('{id}', 'BlogsController@show');
+	Route::get('/', 'BlogsController@index');
+	Route::get('{id}', 'BlogsController@show');
+	Route::delete('{id}', 'BlogsController@destroy');
 });
 Route::group([
-    'prefix' => 'shop'
-], function() {
+	'prefix' => 'shop'
+], function () {
 	Route::post('/', 'ShopController@store');
-    Route::get('/', 'ShopController@index');
-    Route::get('{id}', 'ShopController@show');
+	Route::get('/', 'ShopController@index');
+	Route::get('{id}', 'ShopController@show');
+	Route::delete('{id}', 'ShopController@destroy');
 });
 
 Route::group([
 	'prefix' => 'auth',
 	'namespace' => 'Auth'
-], function() {
+], function () {
 	Route::post('login', 'AuthController@login');
 	// Route::post('register', 'AuthController@register');
 	Route::get('logout', 'AuthController@logout');
