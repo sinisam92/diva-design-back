@@ -42,4 +42,17 @@ class BlogsController extends Controller
             'message' => 'Deleted'
         ]);
     }
+    public function update(Request $request, $id)
+    {
+        $user = auth()->user()->id;
+
+        $blog = Blog::find($id);
+        $blog->title = $request->input('title');
+        $blog->image_url = $request->input('image_url');
+        $blog->content = $request->input('content');
+        $blog->user_id = $user;
+        $blog->save();
+
+        return $this->show($blog->id);
+    }
 }
