@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BlogRequest extends FormRequest
+class ShopRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,15 @@ class BlogRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
             "title" => "required|min:2|max:255",
-            "content" => "required|min:15|max:1000",
-            "image" => "min:1",
-            "image.*.url" => ['regex:/^(http)?s?:?(\/\/[^\']*\.(?:png|jpg|jpeg))/']
+            "description" => "max:1000",
+            "price" => "required|integer",
+            "currency" => "required",
+            "type" => "required",
+            "image_url" => "min:1|url",
+            "images.*.url" => ['regex:/^(http)?s?:?(\/\/[^\']*\.(?:png|jpg|jpeg))/']
+
         ];
     }
 }

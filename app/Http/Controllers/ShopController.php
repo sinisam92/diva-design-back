@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Shop;
+use App\Http\Requests\ShopRequest;
 
 class ShopController extends Controller
 {
@@ -24,7 +25,7 @@ class ShopController extends Controller
     {
         return Shop::with(['user'])->find($id);
     }
-    public function store(Request $request)
+    public function store(ShopRequest $request)
     {
         $user = auth()->user()->id;
         $shop = new Shop();
