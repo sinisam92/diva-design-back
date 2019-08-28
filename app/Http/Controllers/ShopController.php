@@ -7,6 +7,10 @@ use App\Shop;
 
 class ShopController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['index', 'show']]);
+    }
     public function index()
     {
         $query = Shop::query();
@@ -22,7 +26,7 @@ class ShopController extends Controller
     }
     public function store(Request $request)
     {
-
+        $user = auth()->user()->id;
         $shop = new Shop();
         $shop->title = $request->input('title');
         $shop->description = $request->input('description');
@@ -30,7 +34,7 @@ class ShopController extends Controller
         $shop->currency = $request->input('currency');
         $shop->image_url = $request->input('image_url');
         $shop->type = $request->input('type');
-        // $shop->user_id = auth()->user()->id;
+        $shop->user_id = $user;
         $shop->save();
 
         return $this->show($shop->id);
@@ -38,7 +42,6 @@ class ShopController extends Controller
     public function update(Request $request, $id)
     {
         $user = auth()->user()->id;
-
         $shop = Shop::find($id);
         $shop->title = $request->input('title');
         $shop->description = $request->input('description');

@@ -21,6 +21,11 @@ class CreateShopsTable extends Migration
             $table->integer('price');
             $table->string('image_url');
             $table->string('type');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
